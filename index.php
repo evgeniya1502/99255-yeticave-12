@@ -43,8 +43,19 @@ $slots = [
    'category' => 'Разное',    
    'price' => '5400',
    'url' => 'img/lot-6.jpg'
-    ]
+    ],
 ];
+
+function numberFormat ($num) {
+   $num_formatted = ceil($num);
+    if ($num_formatted < 1000) {
+       $num_formatted = $num . ' ' . '₽';
+    }
+    else {  
+  $num_formatted = number_format($num, 0, ',', ' ') . ' ' . '₽';
+}
+echo $num_formatted;
+}
 
 ?>
 <!DOCTYPE html>
@@ -100,7 +111,7 @@ if ($is_auth === 1): ?>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
             <!--заполните этот список из массива категорий-->
-            <?php foreach ($categories as $key => $val): ?>
+            <?php foreach ($categories as $val): ?>
             <li class="promo__item promo__item--boards">
                 <a class="promo__link" href="pages/all-lots.html"><?=$val?></a>
             </li>
@@ -113,7 +124,7 @@ if ($is_auth === 1): ?>
         </div>
         <ul class="lots__list">
             <!--заполните этот список из массива с товарами-->
-            <?php foreach ($slots as $row => $value): ?>
+            <?php foreach ($slots as $value): ?>
             <li class="lots__item lot">
                 <div class="lot__image">
                     <img src="<?=$value['url'];?>" width="350" height="260" alt="">
@@ -123,8 +134,8 @@ if ($is_auth === 1): ?>
                     <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?=$value['title']?></a></h3>
                     <div class="lot__state">
                         <div class="lot__rate">
-                            <span class="lot__amount"><?=$value['price']?></span>
-                            <span class="lot__cost"><?=$value['price']?><b class="rub">р</b></span>
+                            <span class="lot__amount"><?= numberFormat ($value['price']) ?></span>
+                            <span class="lot__cost"><?= numberFormat ($value['price']) ?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
