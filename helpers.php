@@ -126,7 +126,7 @@ function get_noun_plural_form (int $number, string $one, string $two, string $ma
  * @param array $data Ассоциативный массив с данными для шаблона
  * @return string Итоговый HTML
  */
-function include_template($name, array $data = []) {
+/*function include_template($name, array $data = []) {
     $name = 'templates/' . $name;
     $result = '';
 
@@ -141,6 +141,23 @@ function include_template($name, array $data = []) {
     $result = ob_get_clean();
 
     return $result;
+}*/
+
+function include_template($name, array $data = [])
+{
+    $name = __DIR__.'/templates/'.$name;
+
+    ob_start();
+    extract($data);
+    require $name;
+
+    return ob_get_clean();
 }
 
+function ht($name2)
+{
+    $name2 = htmlspecialchars($name2, ENT_QUOTES);
 
+    return $name2;
+}
+//$name = htmlspecialchars($_POST['name'], ENT_QUOTES);
