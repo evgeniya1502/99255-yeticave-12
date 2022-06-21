@@ -120,28 +120,18 @@ function get_noun_plural_form (int $number, string $one, string $two, string $ma
     }
 }
 
+
+function priceFormat( $num ) {
+    $price_formatted = number_format( $num, 0, ',', ' ' ) . ' ' . '₽';
+    return $price_formatted;
+}
+
 /**
  * Подключает шаблон, передает туда данные и возвращает итоговый HTML контент
  * @param string $name Путь к файлу шаблона относительно папки templates
  * @param array $data Ассоциативный массив с данными для шаблона
  * @return string Итоговый HTML
  */
-/*function include_template($name, array $data = []) {
-    $name = 'templates/' . $name;
-    $result = '';
-
-    if (!is_readable($name)) {
-        return $result;
-    }
-
-    ob_start();
-    extract($data);
-    require $name;
-
-    $result = ob_get_clean();
-
-    return $result;
-}*/
 
 function include_template($name, array $data = [])
 {
@@ -160,4 +150,3 @@ function ht($name2)
 
     return $name2;
 }
-//$name = htmlspecialchars($_POST['name'], ENT_QUOTES);

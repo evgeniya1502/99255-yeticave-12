@@ -1,10 +1,10 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT']."/yeticave/helpers.php";
+include $_SERVER['DOCUMENT_ROOT']."/helpers.php";
 
 $is_auth = rand( 0, 1 );
 
-//$user_name = 'Evgeniya';
+$user_name = 'Evgeniya';
 
 $categories = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
 
@@ -49,11 +49,6 @@ $slots = [
     ],
 ];
 
-function priceFormat( $num ) {
-    $price_formatted = number_format( $num, 0, ',', ' ' ) . ' ' . '₽';
-    return $price_formatted;
-}
-
 $data = [
     'categories' => $categories,
     'slots' => $slots,
@@ -62,7 +57,7 @@ $main_content = include_template('main.php', $data);
 
 $layout_content = include_template('layout.php', [
     'is_auth' => $is_auth,
-    'user_name' => 'Евгения',
+    'user_name' => $user_name,
     'title' => 'Главная',
     'main_content' => $main_content,
     'categories' => $categories,
