@@ -30,7 +30,7 @@
                                     <span class = "lot__amount"><?= ht(priceFormat( $value['price']) ); ?></span>
                                     <span class = "lot__cost"><?= ht(priceFormat( $value['price']) ); ?></span>
                                     </div>
-                                <div class = "lot__timer timer">12:23</div>
+                                <div class = "lot__timer timer"><?= ht(get_dt_range( $value['fin_date']) ); ?></div>
                                 </div>
                     </div>
                 </li>
