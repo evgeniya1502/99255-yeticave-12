@@ -120,27 +120,63 @@ function get_noun_plural_form (int $number, string $one, string $two, string $ma
     }
 }
 
+
+function priceFormat( $num ) {
+    $price_formatted = number_format( $num, 0, ',', ' ' ) . ' ' . '₽';
+    return $price_formatted;
+}
+
 /**
  * Подключает шаблон, передает туда данные и возвращает итоговый HTML контент
  * @param string $name Путь к файлу шаблона относительно папки templates
  * @param array $data Ассоциативный массив с данными для шаблона
  * @return string Итоговый HTML
  */
-function include_template($name, array $data = []) {
-    $name = 'templates/' . $name;
-    $result = '';
 
-    if (!is_readable($name)) {
-        return $result;
-    }
+function include_template($name, array $data = [])
+{
+    $name = __DIR__.'/templates/'.$name;
 
     ob_start();
     extract($data);
     require $name;
 
-    $result = ob_get_clean();
+    return ob_get_clean();
+}
 
-    return $result;
+function ht($name2)
+{
+    $name2 = htmlspecialchars($name2, ENT_QUOTES);
+
+    return $name2;
 }
 
 
+function get_dt_range($end_date)
+{
+    date_default_timezone_set('Europe/Moscow');
+    $cur_date = time();
+    $end_date = strtotime($end_date);
+    $diff = $end_date - $cur_date;
+    $minutes = floor($diff / 60);
+    $diff_hour = floor($minutes / 60);
+    $diff_minute = $minutes - ($diff_hour * 60);
+    $time_left = ['diff_hour' => $diff_hour, 'diff_minute' => $diff_minute];
+
+    $time_left2 = ($diff_hour . ":" . $diff_minute);
+
+    return $time_left2;
+}
+
+function get_dt_range_color($end_date)
+{
+    date_default_timezone_set('Europe/Moscow');
+    $cur_date = time();
+    $end_date = strtotime($end_date);
+    $diff = $end_date - $cur_date;
+    $minutes = floor($diff / 60);
+    $diff_hour = floor($minutes / 60);
+    $diff_minute = $minutes - ($diff_hour * 60);
+
+    return $diff_hour;
+}
