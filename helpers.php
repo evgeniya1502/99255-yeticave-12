@@ -151,7 +151,10 @@ function ht($name2)
     return $name2;
 }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 function get_dt_range($end_date)
 {
     date_default_timezone_set('Europe/Moscow');

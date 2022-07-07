@@ -33,13 +33,20 @@
                                 <?php
 
                                 $time_left_color = get_dt_range_color($value['fin_date']);
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
                                 if ($time_left_color >= 1): ?>
                                     <div class = "lot__timer timer"><?= ht(get_dt_range( $value['fin_date']) ); ?></div>
                                 <?php else: ?>
                                     <div class = "lot__timer timer timer--finishing"><?= ht(get_dt_range( $value['fin_date']) ); ?></div>
                                 <?php endif; ?>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                                 </div>
                     </div>
                 </li>
