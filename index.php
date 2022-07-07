@@ -14,7 +14,7 @@ $slots = [
         'category' => 'Доски и лыжи',
         'price' => '10999',
         'url' => 'img/lot-1.jpg',
-        'fin_date' => '2022-07-07',
+        'fin_date' => '2022-07-08',
     ],
 
     [
@@ -51,7 +51,7 @@ $slots = [
         'category' => 'Разное',
         'price' => '5400',
         'url' => 'img/lot-6.jpg',
-        'fin_date' => '2022-07-08',
+        'fin_date' => '2022-07-09',
     ],
 ];
 
