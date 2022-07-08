@@ -33,9 +33,9 @@
                                 <?php
                                 list($diff_hour, $diff_minute) = get_dt_range($value['fin_date']);
                                 if ($diff_hour >= 1): ?>
-                                    <div class = "lot__timer timer"><?= (ht($diff_hour) . ":" . ht($diff_minute)); ?></div>
+                                    <div class = "lot__timer timer"><?= ht(str_pad($diff_hour, 2, "0", STR_PAD_LEFT) . ":" . ht(str_pad($diff_minute, 2, "0", STR_PAD_LEFT))); ?></div>
                                 <?php else: ?>
-                                    <div class = "lot__timer timer timer--finishing"><?= ($diff_hour . ":" . $diff_minute); ?></div>
+                                    <div class = "lot__timer timer timer--finishing"><?= (ht(str_pad($diff_hour, 2, "0", STR_PAD_LEFT)) . ":" . ht(str_pad($diff_minute, 2, "0", STR_PAD_LEFT))); ?></div>
                                 <?php endif; ?>
 
                                 </div>
