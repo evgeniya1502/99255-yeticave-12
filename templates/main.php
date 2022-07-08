@@ -31,13 +31,11 @@
                                     <span class = "lot__cost"><?= ht(priceFormat( $value['price']) ); ?></span>
                                     </div>
                                 <?php
-
-                                $time_left_color = get_dt_range_color($value['fin_date']);
-
-                                if ($time_left_color >= 1): ?>
-                                    <div class = "lot__timer timer"><?= ht(get_dt_range( $value['fin_date']) ); ?></div>
+                                list($diff_hour, $diff_minute) = get_dt_range($value['fin_date']);
+                                if ($diff_hour >= 1): ?>
+                                    <div class = "lot__timer timer"><?= ($diff_hour . ":" . $diff_minute); ?></div>
                                 <?php else: ?>
-                                    <div class = "lot__timer timer timer--finishing"><?= ht(get_dt_range( $value['fin_date']) ); ?></div>
+                                    <div class = "lot__timer timer timer--finishing"><?= ($diff_hour . ":" . $diff_minute); ?></div>
                                 <?php endif; ?>
 
                                 </div>

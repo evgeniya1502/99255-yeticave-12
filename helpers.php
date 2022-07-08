@@ -161,22 +161,9 @@ function get_dt_range($end_date)
     $minutes = floor($diff / 60);
     $diff_hour = floor($minutes / 60);
     $diff_minute = $minutes - ($diff_hour * 60);
-    $time_left = ['diff_hour' => $diff_hour, 'diff_minute' => $diff_minute];
+    $time_left = [$diff_hour, $diff_minute];
 
-    $time_left2 = ($diff_hour . ":" . $diff_minute);
-
-    return $time_left2;
+    return $time_left;
 }
 
-function get_dt_range_color($end_date)
-{
-    date_default_timezone_set('Europe/Moscow');
-    $cur_date = time();
-    $end_date = strtotime($end_date);
-    $diff = $end_date - $cur_date;
-    $minutes = floor($diff / 60);
-    $diff_hour = floor($minutes / 60);
-    $diff_minute = $minutes - ($diff_hour * 60);
 
-    return $diff_hour;
-}
