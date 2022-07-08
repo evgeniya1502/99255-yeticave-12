@@ -30,7 +30,14 @@
                                     <span class = "lot__amount"><?= ht(priceFormat( $value['price']) ); ?></span>
                                     <span class = "lot__cost"><?= ht(priceFormat( $value['price']) ); ?></span>
                                     </div>
-                                <div class = "lot__timer timer">12:23</div>
+                                <?php
+                                list($diff_hour, $diff_minute) = get_dt_range($value['fin_date']);
+                                if ($diff_hour >= 1): ?>
+                                    <div class = "lot__timer timer"><?= ht(str_pad($diff_hour, 2, "0", STR_PAD_LEFT) . ":" . ht(str_pad($diff_minute, 2, "0", STR_PAD_LEFT))); ?></div>
+                                <?php else: ?>
+                                    <div class = "lot__timer timer timer--finishing"><?= (ht(str_pad($diff_hour, 2, "0", STR_PAD_LEFT)) . ":" . ht(str_pad($diff_minute, 2, "0", STR_PAD_LEFT))); ?></div>
+                                <?php endif; ?>
+
                                 </div>
                     </div>
                 </li>

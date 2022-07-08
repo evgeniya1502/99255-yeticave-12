@@ -150,3 +150,20 @@ function ht($name2)
 
     return $name2;
 }
+
+
+function get_dt_range($end_date)
+{
+    date_default_timezone_set('Europe/Moscow');
+    $cur_date = time();
+    $end_date = strtotime($end_date);
+    $diff = $end_date - $cur_date;
+    $minutes = floor($diff / 60);
+    $diff_hour = floor($minutes / 60);
+    $diff_minute = $minutes - ($diff_hour * 60);
+    $time_left = [$diff_hour, $diff_minute];
+
+    return $time_left;
+}
+
+
