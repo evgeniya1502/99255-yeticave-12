@@ -61,7 +61,9 @@ select category from categories;
 
 SELECT date_create, name, price_start, image, rates.price, categories.category FROM lots
 LEFT JOIN rates ON lots.id = rates.lot_id
-JOIN categories ON lots.category_id = categories.id ORDER BY lots.date_create DESC;
+JOIN categories ON lots.category_id = categories.id
+WHERE winner_id = 0
+ORDER BY lots.date_create DESC;
 
 
 
@@ -78,12 +80,6 @@ SET `name` = "Ботинки для сноуборда DC Mutiny Charocal NEW2"
 WHERE id = 4;
 
 -- получить список ставок для лота по его идентификатору с сортировкой по дате
--- не совсем понятно, какие поля лота нужно показать
--- все поля
 
-SELECT * FROM rates JOIN lots ON lots.id = rates.lot_id WHERE lots.id = 6 ORDER BY date DESC;
-
--- некоторые поля
-
-SELECT lots.id, name, description, image, price_start, rates.price FROM lots JOIN rates ON lots.id = rates.lot_id WHERE lots.id = 6 ORDER BY date DESC;
+SELECT name, rates.price FROM lots JOIN rates ON lots.id = rates.lot_id WHERE lots.id = 3 ORDER BY date DESC;
 

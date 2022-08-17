@@ -50,7 +50,7 @@ CREATE TABLE `lots` (
   `step` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
-  `winner_id` int(11) NOT NULL
+  `winner_id` int(11) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
