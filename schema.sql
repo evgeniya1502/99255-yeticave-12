@@ -118,50 +118,12 @@ ALTER TABLE `rates`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Индексы таблицы `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
-
-
-  -- Индексы сохранённых таблиц
---
-
---
--- Индексы таблицы `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `lots`
---
-ALTER TABLE `lots`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `category_id` (`category_id`),
-  ADD KEY `category_id_2` (`category_id`),
-  ADD KEY `category_id_3` (`category_id`);
-
---
--- Индексы таблицы `rates`
---
-ALTER TABLE `rates`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -193,18 +155,6 @@ ALTER TABLE `user`
 COMMIT;
 
 
-
-
---
--- Ограничения внешнего ключа сохраненных таблиц
---
-
---
--- Ограничения внешнего ключа таблицы `lots`
---
-ALTER TABLE `lots`
-  ADD CONSTRAINT `lots_ibfk_1` FOREIGN KEY (`id`) REFERENCES `categories` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

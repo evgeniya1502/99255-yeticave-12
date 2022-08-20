@@ -61,10 +61,11 @@ select category from categories;
 
 -- еще вывела date_create, чтобы сортировку было видно
 
-SELECT date_create, name, price_start, image, rates.price, categories.category FROM lots
+SELECT date_create, name, price_start, image, MAX(rates.price) AS price, categories.category FROM lots
 LEFT JOIN rates ON lots.id = rates.lot_id
 JOIN categories ON lots.category_id = categories.id
 WHERE winner_id = 0 AND date_fin > CURRENT_DATE
+GROUP BY lots.id
 ORDER BY lots.date_create DESC;
 
 
