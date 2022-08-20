@@ -17,11 +17,11 @@ INSERT INTO `categories` (`id`, `category`, `symbol_code`) VALUES
 
 INSERT INTO `lots` (`id`, `date_create`, `name`, `description`, `image`, `price_start`, `date_fin`, `step`, `user_id`, `category_id`, `winner_id`) VALUES
 (1, '2022-08-12 14:10:15', '2014 Rossignol District Snowboard', 'Доска в хорошем состоянии', 'img/lot-1.jpg', 10999, '2022-08-30 14:09:42', 1000, 1, 1, 2),
-(2, '2022-08-12 14:08:42', 'DC Ply Mens 2016/2017 Snowboard', 'Отличный сноуборд, использовался пару сезонов', 'img/lot-2.jpg', 159999, '2022-08-28 14:08:42', 1500, 2, 1, 4),
+(2, '2022-08-12 14:08:42', 'DC Ply Mens 2016/2017 Snowboard', 'Отличный сноуборд, использовался пару сезонов', 'img/lot-2.jpg', 159999, '2022-08-28 14:08:42', 1500, 3, 1, 0),
 (3, '2022-08-12 14:14:59', 'Крепления Union Contact Pro 2015 года размер L/XL', 'Крепления Union Contact Pro', 'img/lot-3.jpg', 8000, '2022-09-12 14:14:59', 500, 3, 2, 1),
-(4, '2022-08-12 15:10:59', 'Ботинки для сноуборда DC Mutiny Charocal NEW', 'Очень удобные', 'img/lot-4.jpg', 10999, '2022-09-05 16:05:59', 700, 2, 3, 5),
-(5, '2022-08-12 13:17:29', 'Куртка для сноуборда DC Mutiny Charocal', 'Легкая, теплая. Небольшие потертости, остальное норм.', 'img/lot-5.jpg', 7500, '2022-08-30 12:37:29', 1200, 4, 4, 3),
-(6, '2022-08-12 14:17:29', 'Маска Oakley Canopy', 'Очень удобная, без видимых дефектов', 'img/lot-6.jpg', 5400, '2022-09-17 14:17:29', 400, 2, 6, 3);
+(4, '2022-08-12 15:10:59', 'Ботинки для сноуборда DC Mutiny Charocal NEW5', 'Очень удобные', 'img/lot-4.jpg', 10999, '2022-09-05 16:05:59', 700, 2, 3, 0),
+(5, '2022-08-12 13:17:29', 'Куртка для сноуборда DC Mutiny Charocal', 'Легкая, теплая. Небольшие потертости, остальное норм.', 'img/lot-5.jpg', 7500, '2022-08-19 12:37:29', 1200, 4, 4, 0),
+(6, '2022-08-12 14:17:29', 'Маска Oakley Canopy', 'Очень удобная, без видимых дефектов', 'img/lot-6.jpg', 5400, '2022-09-17 14:17:29', 400, 2, 6, 0);
 
 -- --------------------------------------------------------
 
@@ -30,10 +30,12 @@ INSERT INTO `lots` (`id`, `date_create`, `name`, `description`, `image`, `price_
 --
 
 INSERT INTO `rates` (`id`, `date`, `price`, `user_id`, `lot_id`) VALUES
-(1, '2022-08-11', 8500, 3, 3),
-(2, '2022-08-12', 7500, 4, 5),
-(3, '2022-08-10', 6200, 2, 6),
-(4, '2022-08-09', 5800, 3, 6);
+(1, '2022-08-11 00:00:00', 8500, 3, 3),
+(2, '2022-08-12 00:00:00', 7500, 4, 5),
+(3, '2022-08-10 00:00:00', 6200, 2, 6),
+(4, '2022-08-09 00:00:00', 5800, 3, 6),
+(5, '2022-08-17 22:46:01', 8200, 4, 3),
+(6, '2022-08-17 22:46:01', 11500, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -62,7 +64,7 @@ select category from categories;
 SELECT date_create, name, price_start, image, rates.price, categories.category FROM lots
 LEFT JOIN rates ON lots.id = rates.lot_id
 JOIN categories ON lots.category_id = categories.id
-WHERE winner_id = 0
+WHERE winner_id = 0 AND date_fin > CURRENT_DATE
 ORDER BY lots.date_create DESC;
 
 
@@ -76,10 +78,10 @@ JOIN categories ON lots.category_id = categories.id WHERE lots.id = 3;
 -- обновить название лота по его идентификатору
 
 UPDATE lots
-SET `name` = "Ботинки для сноуборда DC Mutiny Charocal NEW2"
+SET `name` = "Ботинки для сноуборда DC Mutiny Charocal NEW5"
 WHERE id = 4;
 
 -- получить список ставок для лота по его идентификатору с сортировкой по дате
 
-SELECT name, rates.price FROM lots JOIN rates ON lots.id = rates.lot_id WHERE lots.id = 3 ORDER BY date DESC;
+SELECT price FROM rates WHERE lot_id = 6 ORDER BY date DESC;
 
