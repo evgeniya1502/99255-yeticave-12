@@ -11,7 +11,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 mysqli_set_charset($con, "utf8mb4");
 $sql = "SELECT category FROM categories";
 $result = mysqli_query($con, $sql);
-$categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$categories = mysqli_fetch_row($result);
 
 //$categories = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
 
