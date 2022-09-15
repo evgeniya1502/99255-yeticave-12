@@ -12,7 +12,7 @@ mysqli_set_charset($con, "utf8mb4");
 $sql = "SELECT category, symbol_code FROM categories";
 $result = mysqli_query($con, $sql);
 $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
-$category_new = array_column($categories, 'category');
+//$category_new = array_column($categories, 'category');
 
 $sql_slots = "SELECT name, price_start, image, date_fin, IFNULL(MAX(rates.price), lots.price_start) AS price, categories.category FROM lots
 LEFT JOIN rates ON lots.id = rates.lot_id
@@ -75,7 +75,7 @@ $slots = [
 */
 
 $data = [
-    'category_new' => $category_new,
+    //'category_new' => $category_new,
     'slots' => $slots,
     'categories' => $categories,
 ];
@@ -86,7 +86,8 @@ $layout_content = include_template('layout.php', [
     'user_name' => $user_name,
     'title' => 'Главная',
     'main_content' => $main_content,
-    'category_new' => $category_new,
+    //'category_new' => $category_new,
+    'categories' => $categories,
 ]);
 echo $layout_content;
 
