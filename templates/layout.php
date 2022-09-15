@@ -50,7 +50,7 @@
 <footer class = "main-footer">
     <nav class = "nav">
         <ul class = "nav__list container">
-            <?php foreach ( $categories as $key => $val ): ?>
+            <?php foreach ( $category_new as $key => $val ): ?>
                 <li class = "nav__item">
                 <a href = "pages/all-lots.html"><?= ht($val); ?></a>
                 </li>
@@ -59,7 +59,7 @@
     </nav>
     <div class = "main-footer__bottom container">
     <div class = "main-footer__copyright">
-        <p>© 2019, YetiCave</p>
+        <p>© 2022, YetiCave</p>
         <p>Интернет-аукцион сноубордического и горнолыжного снаряжения</p>
     </div>
     <div class = "main-footer__social social">

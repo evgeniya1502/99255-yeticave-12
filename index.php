@@ -9,12 +9,23 @@ $user_name = 'Evgeniya';
 $con = mysqli_connect("localhost", "root", "", "yeticave");
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 mysqli_set_charset($con, "utf8mb4");
-$sql = "SELECT category FROM categories";
+$sql = "SELECT category, symbol_code FROM categories";
 $result = mysqli_query($con, $sql);
-$categories = mysqli_fetch_row($result);
+$categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$category_new = array_column($categories, 'category');
 
-//$categories = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
+$sql_slots = "SELECT name, price_start, image, date_fin, IFNULL(MAX(rates.price), lots.price_start) AS price, categories.category FROM lots
+LEFT JOIN rates ON lots.id = rates.lot_id
+JOIN categories ON lots.category_id = categories.id
+WHERE winner_id = 0 AND date_fin > CURRENT_DATE
+GROUP BY lots.id
+ORDER BY lots.date_create DESC";
+$result_slots = mysqli_query($con, $sql_slots);
+$slots = mysqli_fetch_all($result_slots, MYSQLI_ASSOC);
+//var_dump($categories);
 
+
+/*
 $slots = [
     [
         'title' => '2014 Rossignol District Snowboard',
@@ -61,10 +72,12 @@ $slots = [
         'fin_date' => '2022-07-09',
     ],
 ];
+*/
 
 $data = [
-    'categories' => $categories,
+    'category_new' => $category_new,
     'slots' => $slots,
+    'categories' => $categories,
 ];
 $main_content = include_template('main.php', $data);
 
@@ -73,7 +86,7 @@ $layout_content = include_template('layout.php', [
     'user_name' => $user_name,
     'title' => 'Главная',
     'main_content' => $main_content,
-    'categories' => $categories,
+    'category_new' => $category_new,
 ]);
 echo $layout_content;
 
